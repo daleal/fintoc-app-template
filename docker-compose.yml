@@ -1,0 +1,68 @@
+version: '3.7'
+services:
+  db:
+    image: postgres:12.3
+    volumes:
+      - data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust  # Insecure connection, only for local
+    networks:
+      - backend
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    init: true
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      RAILS_ENV: development
+      WEBPACKER_DEV_SERVER_HOST: webpacker
+    env_file: .env
+    depends_on:
+      - db
+      - webpacker
+    networks:
+      - backend
+      - frontend
+  ngrok:
+    image: wernight/ngrok:latest
+    environment:
+      NGROK_LOOK_DOMAIN: web
+      NGROK_PORT: 3000
+      NGROK_DEBUG: 'true'
+      NGROK_BINDTLS: 'true'
+    depends_on:
+      - web
+    networks:
+      - backend
+  webpacker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    init: true
+    environment:
+      NODE_ENV: development
+      RAILS_ENV: development
+      WEBPACKER_DEV_SERVER_HOST: webpacker
+    command: ./bin/webpack-dev-server
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "3035:3035"
+    networks:
+      - frontend
+
+
+volumes:
+  data:
+    driver: local
+
+networks:
+  backend:
+  frontend:

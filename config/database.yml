@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  username: postgres
+  password:
+  pool: 5
+
+production:
+  <<: *default
+  database: rails_vue_production
+
+development:
+  <<: *default
+  database: rails_vue_development
+
+test:
+  <<: *default
+  database: rails_vue_test

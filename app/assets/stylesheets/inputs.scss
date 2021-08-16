@@ -1,0 +1,34 @@
+.input-card {
+  padding: 0 1em;
+  margin-bottom: 1em;
+}
+
+.form-input {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font: inherit;
+  resize: none;
+  overflow: auto;
+  color: var(--primary-font-color);
+  font-size: 1.3em;
+  line-height: 1.2em;
+
+  &:active {
+    border: none;
+  }
+
+  &.textarea {
+    height: 10em;
+  }
+}
+
+// Mobile
+@media only screen and (max-width: 600px) {
+  .form-input {
+    height: 2.5em;
+  }
+}

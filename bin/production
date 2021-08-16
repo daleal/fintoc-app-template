@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+trap "exit" SIGINT SIGTERM
+
+COMPOSE_FLAGS="-f docker-compose.production.yml"
+
+
+build() {
+  docker-compose $COMPOSE_FLAGS build
+  docker-compose $COMPOSE_FLAGS pull
+}
+
+drop_database() {
+  docker-compose $COMPOSE_FLAGS run web bundle exec rails db:drop:_unsafe
+}
+
+create_database() {
+  docker-compose $COMPOSE_FLAGS run web bundle exec rails db:create
+}
+
+migrate_database() {
+  docker-compose $COMPOSE_FLAGS run web bundle exec rails db:migrate
+}
+
+start() {
+  docker-compose $COMPOSE_FLAGS up -d
+}
+
+stop() {
+  docker-compose $COMPOSE_FLAGS down
+}
+
+case "$1" in
+  "build")
+    build
+    ;;
+  "db:drop"|"database:drop")
+    drop_database
+    ;;
+  "db:create"|"database:create")
+    create_database
+    ;;
+  "db:migrate"|"database:migrate")
+    migrate_database
+    ;;
+  "start")
+    start
+    ;;
+  "stop")
+    stop
+    ;;
+  *)
+    echo "Usage: production [build|db:create|db:migrate|start|stop]"
+    ;;
+esac

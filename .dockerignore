@@ -1,0 +1,28 @@
+# Ignore everything
+*
+
+# Include application files
+!app
+!bin
+!config
+!db
+!lib
+!public
+!test
+!vendor
+!config.ru
+!Rakefile
+
+# Include build files
+!Gemfile
+!Gemfile.lock
+!package.json
+!yarn.lock
+
+# Include configuration files
+!babel.config.js
+!postcss.config.js
+
+# Include misc files
+!.ruby-version
+!entrypoint.sh
