@@ -10,7 +10,7 @@ This demo should be **almost** a _plug and play_ experience. The "**almost**" pa
 
 ### Local usage
 
-To use this repository locally, you should first create a `.env` file and fill the `FINTOC_PUBLIC_KEY` variable with your Fintoc public key!
+To use this repository locally, you should first create a `.env` file and fill the `FINTOC_PUBLIC_KEY` and `FINTOC_SECRET_KEY` variables with your Fintoc keys!
 
 ```sh
 cp .env.example .env
