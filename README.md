@@ -44,7 +44,7 @@ ngrok_1 | t=2021-07-15T14:53:04+0000 lvl=info msg="started tunnel" obj=tunnels n
 
 Notice that the `url` attribute of this line will contain a URL that should look like `https://<random-string>.ngrok.io`. This `<random-string>` will change every time that you start the server, but we need to pass that URL to direct our webhooks on development without restarting the server, thus changing the URL!
 
-Once the server starts and you find the `ngrok` URL, you should edit the file `app/javascript/components/WithModal.vue`. On that file, you should see a line that reads `'https://xxxxxxxxxxxx.ngrok.io'`. Replace the `xxxxxxxxxxxx` portion of the string with your `<random-string>`. After saving the file, the app should _hot-reload_, and you're good to go!
+Once the server starts and you find the `ngrok` URL, you should edit the file `app/javascript/components/WithModal.vue`. On that file, you should see a line that reads `'https://*.ngrok.io'`. Replace the `*` portion of the string with your `<random-string>`. After saving the file, the app should _hot-reload_, and you're good to go!
 
 You should be able to enter `http://localhost:3000` and see your application running!
 
