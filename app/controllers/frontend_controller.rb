@@ -1,5 +1,5 @@
 class FrontendController < ApplicationController
-  def bank
+  def main
     @fintoc_public_key = Constants::FintocSecrets::PUBLIC_KEY
   end
 end

@@ -9,7 +9,7 @@ import Widget from '../services/widget';
 
 const webhookBase = (
   window.location.origin.includes('localhost')
-    ? 'https://xxxxxxxxxxxx.ngrok.io'
+    ? 'https://*.ngrok.io'
     : window.location.origin
 );
 

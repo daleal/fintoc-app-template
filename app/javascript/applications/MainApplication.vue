@@ -6,7 +6,7 @@
     :publicKey="publicKey"
     @on-success="saveLink"
   >
-    <bank-layout
+    <layout
       v-if="link"
       :link-id="link.id"
     />
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import BankLayout from '../components/bank/Layout.vue';
+import Layout from '../components/Layout.vue';
 import WithModal from '../components/WithModal.vue';
 
 export default {
@@ -27,7 +27,7 @@ export default {
     }
   },
   components: {
-    BankLayout,
+    Layout,
     WithModal,
   },
   mounted() {
